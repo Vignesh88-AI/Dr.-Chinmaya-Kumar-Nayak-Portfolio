@@ -1,65 +1,62 @@
-import Image from "next/image";
+import dynamic from "next/dynamic";
+import Navbar from "../components/ui/Navbar";
+import Hero from "../components/sections/Hero";
+import About from "../components/sections/About";
+import Experience from "../components/sections/Experience";
+import Publications from "../components/sections/Publications";
+import Contact from "../components/sections/Contact";
+
+const SmoothScroll = dynamic(() => import("../components/ui/SmoothScroll"), {
+  ssr: false,
+});
+const ParticlesBackground = dynamic(
+  () => import("../components/ui/ParticlesBackground"),
+  { ssr: false }
+);
+const Research = dynamic(() => import("../components/sections/Research"), {
+  ssr: false,
+});
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
+    <SmoothScroll>
+      {/* 3D Cosmic background */}
+      <ParticlesBackground />
+
+      {/* Main site content */}
+      <div className="relative z-10 w-full flex flex-col items-center">
+        <Navbar />
+
+        <main className="w-full">
+          <Hero />
+          <About />
+          <Research />
+          <Experience />
+          <Publications />
+          <Contact />
+        </main>
+
+        {/* Footer */}
+        <footer className="w-full border-t border-white/[0.04] py-10 px-6">
+          <div className="max-w-5xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="text-center md:text-left">
+              <p className="text-sm font-display font-semibold text-slate-300">
+                Dr. Chinmaya Kumar Nayak
+              </p>
+              <p className="text-xs font-sans text-slate-500 mt-1">
+                Head of School of AI &amp; Data Science · Sri Sri University, Odisha
+              </p>
+            </div>
+            <div className="flex flex-wrap justify-center gap-6 text-xs font-display text-slate-500">
+              <a href="https://srisriuniversity.edu.in/" target="_blank" rel="noopener noreferrer" className="hover:text-neon-cyan transition-colors duration-200">Sri Sri University</a>
+              <a href="https://www.linkedin.com/in/dr-chinmaya-kumar-nayak-035252b4/" target="_blank" rel="noopener noreferrer" className="hover:text-neon-cyan transition-colors duration-200">LinkedIn</a>
+              <a href="https://scholar.google.com/citations?user=F_kFZrQAAAAJ&hl=en" target="_blank" rel="noopener noreferrer" className="hover:text-neon-cyan transition-colors duration-200">Google Scholar</a>
+              <a href="https://www.researchgate.net/profile/Chinmaya-Nayak-6" target="_blank" rel="noopener noreferrer" className="hover:text-neon-cyan transition-colors duration-200">ResearchGate</a>
+            </div>
+            <p suppressHydrationWarning={true} className="text-xs text-slate-600 font-sans">© {new Date().getFullYear()} All Rights Reserved</p>
+          </div>
+        </footer>
+      </div>
+    </SmoothScroll>
   );
 }
