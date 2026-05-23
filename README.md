@@ -76,6 +76,7 @@ dr-chinmaya-kumar-nayak-portfolio/
 ├── postcss.config.mjs
 ├── next.config.ts
 └── tsconfig.json
+```
 
 ## 📄 Sections
 
@@ -95,4 +96,7 @@ dr-chinmaya-kumar-nayak-portfolio/
 ---
 
 **Made with ❤️ for Dr. Chinmaya Kumar Nayak**
+
+```
+
 ```
