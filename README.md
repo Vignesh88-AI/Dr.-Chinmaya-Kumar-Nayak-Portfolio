@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Dr. Chinmaya Kumar Nayak | Portfolio
 
-## Getting Started
+> **Head of School of AI & Data Science**  
+> Sri Sri University, Cuttack, Odisha
 
-First, run the development server:
+A modern, cinematic, and immersive portfolio website showcasing the academic journey, research contributions, and achievements of Dr. Chinmaya Kumar Nayak.
+
+![Hero Preview](public/images/dr-nayak.jpg)
+
+## ✨ Features
+
+- **Dark Cosmic Theme** with smooth animations
+- **Immersive Hero Section** with professional photo
+- **Interactive Research Cards** with 3D effects
+- **Complete Experience Timeline**
+- **Publications & Patents** showcase (53+ papers, 4 patents)
+- **Responsive Design** (Mobile + Desktop)
+- Built with **Next.js 16**, **Tailwind CSS**, **Framer Motion**
+
+## 🧑‍🏫 About Dr. Chinmaya Kumar Nayak
+
+- **Ph.D.** in Computer Science & Engineering (VSSUT, Burla)
+- **17+ years** of academic and research excellence
+- **4 Indian Patents**
+- Author of _"Data Structures Using C"_
+- **53+ Research Publications**
+- Expertise: Wireless Sensor Networks, Artificial Intelligence, Machine Learning, IoT & Data Science
+
+## 🚀 Live Demo
+
+[Visit Portfolio →](https://dr-chinmaya-kumar-nayak-portfolio.vercel.app)
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 16 (App Router)
+- **Styling**: Tailwind CSS
+- **Animations**: Framer Motion + GSAP
+- **3D Effects**: React Three Fiber / Three.js (optional)
+- **Deployment**: Vercel
+
+## 📁 Project Structure
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+dr-chinmaya-kumar-nayak-portfolio/
+├── public/
+│   ├── images/
+│   │   └── dr-nayak.jpg          # Professor's main photo
+│   └── favicon.ico
+│
+├── src/
+│   ├── app/
+│   │   ├── globals.css
+│   │   ├── layout.tsx
+│   │   └── page.tsx              # Main Home Page
+│   │
+│   └── components/
+│       ├── sections/
+│       │   ├── Hero.tsx
+│       │   ├── About.tsx
+│       │   ├── Research.tsx
+│       │   ├── Experience.tsx
+│       │   ├── Publications.tsx
+│       │   └── Contact.tsx
+│       │
+│       └── ui/
+│           ├── Navbar.tsx
+│           ├── Card3D.tsx
+│           ├── ParticlesBackground.tsx
+│           ├── SmoothScroll.tsx
+│           └── CustomCursor.tsx
+│
+├── .gitignore
+├── next.config.ts
+├── package.json
+├── README.md
+├── postcss.config.mjs
+├── next.config.ts
+└── tsconfig.json
+
+## 📄 Sections
+
+- Hero
+- About & Key Highlights
+- Research Interests
+- Experience & Achievements
+- Publications & Patents
+- Contact
+
+## 📬 Connect
+
+- **LinkedIn**: [Dr. Chinmaya Kumar Nayak](https://www.linkedin.com/in/dr-chinmaya-kumar-nayak-68002b32/)
+- **Google Scholar**: [Profile](https://scholar.google.com/citations?user=F_kFZrQAAAAJ&hl=en)
+- **ResearchGate**: [Profile](https://www.researchgate.net/profile/Chinmaya-Nayak-6)
+
+---
+
+**Made with ❤️ for Dr. Chinmaya Kumar Nayak**
 ```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
