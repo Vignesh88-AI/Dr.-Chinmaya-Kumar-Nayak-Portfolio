@@ -73,39 +73,19 @@ export default function Navbar() {
           : ""
       }`}
     >
-      <div className="w-full max-w-5xl flex items-center justify-between">
-        {/* Logo / C Icon (Vercel-style) */}
+      <div className="w-full max-w-6xl flex items-center justify-between gap-4">
+        {/* Brand / logo */}
         <button
           suppressHydrationWarning={true}
           onClick={() => scrollToSection("hero")}
           aria-label="Go to top - Home"
-          className="relative flex items-center justify-center w-10 h-10 group bg-transparent border-none focus:outline-none"
+          className="text-sm md:text-base font-display font-extrabold tracking-[0.24em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-slate-100 to-white hover:from-white hover:to-neon-cyan transition-all duration-300 focus:outline-none"
         >
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 32 32"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
-            className="group-hover:scale-110 transition-transform duration-300"
-          >
-            {/* Geometric C shape inspired by Vercel logo */}
-            <path
-              d="M8 4 L24 4 L24 8 L12 8 L12 16 L24 16 L24 20 L12 20 L12 28 L24 28 L24 32 L8 32 Z"
-              fill="url(#gradient)"
-              className="group-hover:opacity-80 transition-opacity"
-            />
-            <defs>
-              <linearGradient id="gradient" x1="0" y1="0" x2="32" y2="32">
-                <stop offset="0%" stopColor="#06b6d4" />
-                <stop offset="100%" stopColor="#d946ef" />
-              </linearGradient>
-            </defs>
-          </svg>
+          DR. C. K. NAYAK
         </button>
 
         {/* Floating Menu Dock */}
-        <nav className="hidden md:flex items-center gap-1 glassmorphism rounded-full px-2 py-1.5 border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.5)]">
+        <nav className="hidden md:flex items-center gap-1 glassmorphism rounded-full px-2 py-1.5 border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.5)] mx-auto">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
@@ -140,9 +120,9 @@ export default function Navbar() {
           rel="noopener noreferrer"
           aria-label="Sri Sri University website"
           suppressHydrationWarning={true}
-          className="relative overflow-hidden rounded-full px-4 py-2 border border-neon-cyan/40 bg-neon-cyan/5 text-xs font-display font-semibold tracking-wider text-neon-cyan uppercase hover:text-space-black hover:border-transparent transition-all duration-500 group"
+          className="relative overflow-hidden rounded-full px-5 py-2 border border-neon-cyan/30 bg-neon-cyan/10 text-xs md:text-sm font-display font-semibold tracking-widest text-slate-100 uppercase hover:text-white hover:border-neon-cyan/60 transition-all duration-500 group"
         >
-          <span className="absolute inset-0 bg-neon-cyan scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 -z-10" />
+          <span className="absolute inset-0 bg-neon-cyan/10 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 -z-10" />
           Sri Sri Uni
         </a>
       </div>

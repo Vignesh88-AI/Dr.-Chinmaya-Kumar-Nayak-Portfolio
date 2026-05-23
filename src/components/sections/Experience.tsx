@@ -61,7 +61,7 @@ function TimelineItem({
           }}
         >
           <Card3D
-            className="p-7 md:p-8 bg-space-black/80 border border-white/10 backdrop-blur-xl shadow-[0_30px_80px_rgba(0,0,0,0.25)]"
+            className="p-7 md:p-8 bg-[#02070f]/80 border border-white/10 backdrop-blur-xl shadow-[0_30px_80px_rgba(0,0,0,0.25)]"
             glowColor="rgba(6,182,212,0.08)"
           >
             <div className="flex items-center justify-between gap-3 mb-4">
@@ -106,31 +106,34 @@ const timeline = [
   },
   {
     year: "2021 – 2023",
-    role: "Faculty of Emerging Technologies / Associate Professor",
+    role: "Associate Professor & Faculty of Emerging Technologies",
     org: "Sri Sri University",
     location: "Cuttack, Odisha",
-    desc: "Delivered advanced modules in Machine Learning, IoT Architectures, and Algorithms. Supervised master’s dissertations and led interdisciplinary research clusters in smart sensing environments.",
+    desc: "Established emerging technology initiatives. Delivered advanced modules in Machine Learning, IoT Systems, and Data Analytics. Supervised master's dissertations and mentored collaborative research projects.",
+    highlight: "Best Teaching Award 2020",
   },
   {
     year: "2009 – 2021",
     role: "Assistant Professor & Ph.D. Scholar",
     org: "Gandhi Institute for Technological Advancement (GIET)",
     location: "Rayagada, Odisha",
-    desc: "Taught undergraduate and postgraduate courses. Completed Ph.D. in Computer Science & Engineering specializing in energy-efficient cluster routing for Wireless Sensor Networks.",
+    desc: "Completed Ph.D. in Computer Science & Engineering with a focus on energy-efficient cluster routing for Wireless Sensor Networks. Taught Algorithms, Data Structures, and IoT systems.",
+    highlight: "Sandeep Mohapatra Memorial Medal",
   },
   {
     year: "2007 – 2008",
-    role: "Lecturer",
-    org: "Purushottam Institute of Engineering and Technology (PIET)",
-    location: "Rourkela, Odisha",
-    desc: 'Taught Data Structures, C Programming, Database Management and Algorithms. Authored the textbook "Data Structures Using C".',
+    role: "Lecturer & Senior Faculty",
+    org: "Pragati Institute of Engineering and Technology (PIET)",
+    location: "Odisha, India",
+    desc: "Taught Data Structures, C Programming, Database Management, and Algorithms across undergraduate courses. Authored the widely-adopted textbook 'Data Structures Using C'.",
+    highlight: "Co-authored academic textbook",
   },
   {
     year: "2006",
     role: "Software Engineer",
     org: "SR Infotech India",
-    location: "",
-    desc: "Contributed to professional software development projects, building core systems and gaining industry experience ahead of the academic career.",
+    location: "Bhubaneswar, Odisha",
+    desc: "Contributed to enterprise software development projects and gained early industry experience before moving into academia.",
   },
 ];
 
@@ -156,19 +159,17 @@ export default function Experience() {
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="flex items-center justify-center gap-3 mb-4"
+            className="section-label justify-center mb-4"
           >
-            <span className="h-px w-8 bg-electric-purple" />
-            <span className="text-[11px] font-display font-bold tracking-[0.22em] text-electric-purple uppercase">
-              Milestones
-            </span>
-            <span className="h-px w-8 bg-electric-purple" />
+            <span className="section-divider" />
+            <span>Milestones</span>
+            <span className="section-divider" />
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.1 }}
-            className="text-3xl md:text-5xl font-display font-black tracking-tight text-white mb-4"
+            className="section-title mb-4"
           >
             Experience &amp; Achievements
           </motion.h2>
@@ -205,7 +206,7 @@ export default function Experience() {
             ].map((achievement) => (
               <Card3D
                 key={achievement}
-                className="p-6 bg-space-black/80 border border-white/10 backdrop-blur-xl"
+                className="p-6 bg-[#02070f]/80 border border-white/10 backdrop-blur-xl"
                 glowColor="rgba(139,92,246,0.14)"
               >
                 <div className="flex items-center justify-between gap-3 mb-3">

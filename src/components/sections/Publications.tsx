@@ -193,7 +193,7 @@ export default function Publications() {
             transition={{ duration: 0.8, delay: 0.1 }}
             className="text-3xl md:text-5xl font-display font-black tracking-tight text-white mb-5"
           >
-            Research Output &amp; Featured Works
+            Publications & Patented Research
           </motion.h2>
 
           <motion.p
@@ -202,9 +202,8 @@ export default function Publications() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="text-slate-400 text-sm md:text-base max-w-3xl leading-relaxed"
           >
-            Highlighting Dr. Chinmaya Kumar Nayak’s research leadership with
-            featured publications, patents, and academic works that shape AI,
-            IoT, and data science.
+            A legacy of books, published peer-reviewed articles, and patented
+            industrial solutions.
           </motion.p>
 
           <motion.div
@@ -279,7 +278,10 @@ export default function Publications() {
           })}
         </div>
 
-        <motion.div layout className="w-full grid gap-8">
+        <motion.div
+          layout
+          className="w-full grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
           <AnimatePresence mode="popLayout">
             {filteredItems.map((pub) => (
               <motion.div

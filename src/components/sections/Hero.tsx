@@ -94,30 +94,30 @@ export default function Hero() {
       className="relative min-h-screen flex items-center justify-center pt-28 pb-16 px-6 overflow-hidden"
     >
       {/* Grid + gradient overlays */}
-      <div className="absolute inset-0 bg-grid-pattern opacity-30 z-0" />
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-space-black/60 to-space-black z-[1]" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-20 z-0" />
+      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-space-black/40 to-space-black z-[1]" />
       {/* Accent glow blobs */}
-      <div className="absolute top-1/3 left-1/4 w-72 h-72 bg-electric-purple/8 rounded-full blur-[120px] z-0" />
-      <div className="absolute bottom-1/3 right-1/4 w-80 h-80 bg-neon-cyan/6 rounded-full blur-[140px] z-0" />
+      <div className="absolute top-1/3 left-1/4 w-80 h-80 bg-electric-purple/12 rounded-full blur-[140px] z-0" />
+      <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-neon-cyan/12 rounded-full blur-[160px] z-0" />
 
       <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center z-[2]">
         {/* ── Left: Text ── */}
-        <div className="lg:col-span-7 flex flex-col justify-center order-2 lg:order-1">
+        <div className="lg:col-span-7 flex flex-col justify-center order-2 lg:order-1 max-w-3xl">
           <div className="hero-fade flex items-center gap-3 mb-5">
-            <span className="h-px w-10 bg-gradient-to-r from-neon-cyan to-transparent" />
-            <span className="text-[11px] font-display font-bold tracking-[0.25em] text-neon-cyan uppercase">
+            <span className="h-px w-12 bg-gradient-to-r from-slate-200/60 to-transparent" />
+            <span className="text-[11px] font-display font-semibold tracking-[0.25em] text-slate-200 uppercase">
               Head of School of AI &amp; Data Science · Sri Sri University
             </span>
           </div>
 
           {/* BIG NAME */}
-          <div className="reveal-text-parent mb-8">
+          <div className="reveal-text-parent mb-8 max-w-[min(100%,760px)]">
             <h1
               ref={nameRef}
-              className="text-[clamp(3rem,9vw,6.5rem)] font-display font-black leading-[0.9] tracking-[-0.035em] text-white"
+              className="text-[clamp(4.75rem,8.5vw,7.25rem)] font-display font-extrabold leading-[0.94] tracking-[-0.06em] text-white max-w-full"
               style={{
                 textShadow:
-                  "0 0 80px rgba(139,92,246,0.3), 0 0 140px rgba(6,182,212,0.18)",
+                  "0 0 32px rgba(255,255,255,0.22), 0 0 140px rgba(6,182,212,0.18)",
               }}
             >
               DR. CHINMAYA KUMAR NAYAK
@@ -128,7 +128,7 @@ export default function Hero() {
             Ph.D. in Computer Science &amp; Engineering ·{" "}
             <span className="text-slate-100 font-semibold">17+ years</span> of
             academic excellence · Pioneering research in{" "}
-            <span className="text-neon-cyan font-semibold">
+            <span className="text-slate-100 font-semibold">
               AI, WSN, ML &amp; IoT
             </span>
             .
@@ -176,7 +176,7 @@ export default function Hero() {
             initial={{ scale: 0.85, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 1.3, ease: [0.16, 1, 0.3, 1], delay: 0.3 }}
-            className="relative"
+            className="relative w-full max-w-[360px]"
           >
             {/* Outer glow ring */}
             <div className="absolute -inset-4 rounded-3xl bg-gradient-to-br from-neon-cyan/20 via-electric-purple/15 to-neon-magenta/10 blur-xl photo-glow" />
@@ -206,10 +206,10 @@ export default function Hero() {
 
                 {/* Label */}
                 <div className="absolute bottom-4 left-4 right-4 z-10">
-                  <p className="text-[9px] font-display font-bold tracking-[0.2em] text-neon-cyan uppercase mb-0.5">
+                  <p className="text-[9px] font-display font-bold tracking-[0.2em] text-slate-400 uppercase mb-0.5">
                     Sri Sri University · Cuttack
                   </p>
-                  <p className="text-sm font-display font-bold text-white">
+                  <p className="text-sm font-display font-bold text-slate-100">
                     Dr. C. K. Nayak
                   </p>
                 </div>
