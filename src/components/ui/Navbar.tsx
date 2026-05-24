@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import React, { useState, useEffect } from "react";
+import { motion } from "framer-motion";
 
 const navItems = [
   { id: "hero", label: "Home" },
@@ -12,12 +12,12 @@ const navItems = [
   { id: "contact", label: "Contact" },
 ];
 
-export default function Navbar() {
+export default function Navbar(): React.JSX.Element {
   const [activeSection, setActiveSection] = useState("hero");
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    // Scroll event to shrink navbar
+    // Scroll event to shrink navbar and change background
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
     };
@@ -27,7 +27,7 @@ export default function Navbar() {
     // Intersection Observer to track active section
     const observerOptions = {
       root: null,
-      rootMargin: "-40% 0px -40% 0px", // Trigger when section occupies the center of screen
+      rootMargin: "-45% 0px -45% 0px", // Trigger when section occupies the center of screen
       threshold: 0,
     };
 
@@ -67,10 +67,10 @@ export default function Navbar() {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`fixed top-0 left-0 w-full z-40 transition-all duration-300 flex justify-center py-6 px-4 ${
+      className={`sticky top-0 z-40 w-full transition-all duration-300 flex justify-center py-5 px-4 ${
         isScrolled
-          ? "bg-space-black/30 backdrop-blur-md py-4 border-b border-white/5"
-          : ""
+          ? "bg-[#0a0f1e]/80 backdrop-blur-md py-3.5 border-b border-[#2dd4bf]/15 shadow-lg shadow-[#0a0f1e]/40"
+          : "bg-transparent"
       }`}
     >
       <div className="w-full max-w-6xl flex items-center justify-between gap-4">
@@ -79,13 +79,13 @@ export default function Navbar() {
           suppressHydrationWarning={true}
           onClick={() => scrollToSection("hero")}
           aria-label="Go to top - Home"
-          className="text-sm md:text-base font-display font-extrabold tracking-[0.24em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-neon-cyan via-slate-100 to-white hover:from-white hover:to-neon-cyan transition-all duration-300 focus:outline-none"
+          className="text-sm md:text-base font-display font-extrabold tracking-[0.24em] uppercase text-transparent bg-clip-text bg-gradient-to-r from-[#2dd4bf] via-[#818cf8] to-slate-200 hover:from-white hover:to-[#2dd4bf] transition-all duration-300 focus:outline-none cursor-pointer"
         >
           DR. C. K. NAYAK
         </button>
 
         {/* Floating Menu Dock */}
-        <nav className="hidden md:flex items-center gap-1 glassmorphism rounded-full px-2 py-1.5 border border-white/10 shadow-[0_0_20px_rgba(0,0,0,0.5)] mx-auto">
+        <nav className="hidden md:flex items-center gap-0.5 glassmorphism rounded-full px-1.5 py-1 border border-white/5 shadow-2xl mx-auto">
           {navItems.map((item) => {
             const isActive = activeSection === item.id;
             return (
@@ -94,16 +94,16 @@ export default function Navbar() {
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 aria-label={`Scroll to ${item.label}`}
-                className={`relative px-4 py-2 text-xs font-display font-medium tracking-widest uppercase transition-colors duration-300 focus:outline-none ${
+                className={`relative px-3.5 py-1.5 text-[10px] font-display font-semibold tracking-wider uppercase transition-colors duration-300 focus:outline-none cursor-pointer ${
                   isActive
-                    ? "text-space-black font-semibold"
+                    ? "text-[#0a0f1e] font-bold"
                     : "text-slate-400 hover:text-slate-100"
                 }`}
               >
                 {isActive && (
                   <motion.span
                     layoutId="active-nav-indicator"
-                    className="absolute inset-0 bg-gradient-to-r from-neon-cyan to-electric-purple rounded-full -z-10 shadow-[0_0_12px_rgba(6,182,212,0.4)]"
+                    className="absolute inset-0 bg-gradient-to-r from-[#2dd4bf] to-[#818cf8] rounded-full -z-10 shadow-[0_0_12px_rgba(45,212,191,0.35)]"
                     transition={{ type: "spring", stiffness: 380, damping: 30 }}
                   />
                 )}
@@ -113,16 +113,16 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Action Button - University Link */}
+        {/* Action Button - University Link: changed from rounded-full to rounded-lg */}
         <a
           href="https://srisriuniversity.edu.in/"
           target="_blank"
           rel="noopener noreferrer"
           aria-label="Sri Sri University website"
           suppressHydrationWarning={true}
-          className="relative overflow-hidden rounded-full px-5 py-2 border border-neon-cyan/30 bg-neon-cyan/10 text-xs md:text-sm font-display font-semibold tracking-widest text-slate-100 uppercase hover:text-white hover:border-neon-cyan/60 transition-all duration-500 group"
+          className="relative overflow-hidden rounded-lg px-4 py-2 border border-[#2dd4bf]/35 bg-[#2dd4bf]/10 text-xs font-display font-bold tracking-widest text-[#2dd4bf] uppercase hover:text-white hover:border-[#2dd4bf]/60 transition-all duration-500 group"
         >
-          <span className="absolute inset-0 bg-neon-cyan/10 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 -z-10" />
+          <span className="absolute inset-0 bg-[#2dd4bf]/10 scale-x-0 group-hover:scale-x-100 origin-left transition-transform duration-500 -z-10" />
           Sri Sri Uni
         </a>
       </div>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import React, { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import Card3D from "../ui/Card3D";
 
@@ -22,7 +22,7 @@ function TimelineItem({
   desc,
   highlight,
   index,
-}: TimelineItemProps) {
+}: TimelineItemProps): React.JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
   const isRight = index % 2 === 0;
@@ -43,9 +43,9 @@ function TimelineItem({
             damping: 22,
             delay: 0.1,
           }}
-          className="w-5 h-5 rounded-full bg-space-black border-2 border-neon-cyan flex items-center justify-center shadow-[0_0_20px_rgba(6,182,212,0.35)]"
+          className="w-5 h-5 rounded-full bg-[#0a0f1e] border-2 border-[#2dd4bf] flex items-center justify-center shadow-[0_0_20px_rgba(45,212,191,0.35)]"
         >
-          <div className="w-2 h-2 rounded-full bg-neon-cyan" />
+          <div className="w-2 h-2 rounded-full bg-[#2dd4bf]" />
         </motion.div>
       </div>
 
@@ -61,11 +61,11 @@ function TimelineItem({
           }}
         >
           <Card3D
-            className="p-7 md:p-8 bg-[#02070f]/80 border border-white/10 backdrop-blur-xl shadow-[0_30px_80px_rgba(0,0,0,0.25)]"
-            glowColor="rgba(6,182,212,0.08)"
+            className="p-7 md:p-8 backdrop-blur-xl shadow-[0_30px_80px_rgba(0,0,0,0.25)]"
+            glowColor="rgba(45,212,191,0.12)"
           >
             <div className="flex items-center justify-between gap-3 mb-4">
-              <span className="inline-flex px-3 py-1 rounded-full text-[10px] font-display font-bold tracking-[0.2em] uppercase text-space-black bg-gradient-to-r from-neon-cyan to-electric-purple shadow-[0_0_20px_rgba(6,182,212,0.16)]">
+              <span className="inline-flex px-3 py-1 rounded-full text-[10px] font-display font-bold tracking-[0.2em] uppercase text-[#0a0f1e] bg-gradient-to-r from-[#2dd4bf] to-[#818cf8] shadow-[0_0_20px_rgba(45,212,191,0.16)]">
                 {year}
               </span>
               <span className="inline-flex items-center rounded-full bg-white/5 px-3 py-1 text-[10px] font-display font-semibold tracking-[0.18em] text-slate-300 border border-slate-700">
@@ -75,14 +75,14 @@ function TimelineItem({
             <h3 className="text-lg md:text-xl font-display font-black text-white leading-tight mb-3 tracking-[-0.03em]">
               {role}
             </h3>
-            <p className="text-sm font-display font-semibold text-neon-cyan mb-4">
+            <p className="text-sm font-display font-semibold text-[#2dd4bf] mb-4">
               {org}
             </p>
             <p className="text-sm font-sans text-slate-300 leading-relaxed mb-5">
               {desc}
             </p>
             {highlight && (
-              <div className="inline-flex items-center gap-2 rounded-2xl border border-neon-cyan/20 bg-neon-cyan/10 px-4 py-2 text-[11px] font-display font-semibold uppercase tracking-[0.18em] text-neon-cyan shadow-[0_0_12px_rgba(6,182,212,0.08)]">
+              <div className="inline-flex items-center gap-2 rounded-lg border border-[#2dd4bf]/20 bg-[#2dd4bf]/10 px-4 py-2 text-[11px] font-display font-semibold uppercase tracking-[0.18em] text-[#2dd4bf] shadow-[0_0_12px_rgba(45,212,191,0.08)]">
                 {highlight}
               </div>
             )}
@@ -137,17 +137,17 @@ const timeline = [
   },
 ];
 
-export default function Experience() {
+export default function Experience(): React.JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <section
       id="experience"
-      className="relative py-32 px-6 flex items-center justify-center overflow-hidden"
+      className="relative py-24 px-6 flex items-center justify-center overflow-hidden scroll-mt-20"
     >
-      <div className="absolute inset-0 bg-grid-pattern opacity-[0.08] z-0" />
-      <div className="absolute top-1/2 right-1/4 w-[60vw] h-[60vw] bg-[radial-gradient(circle,rgba(139,92,246,0.02)_0%,transparent_70%)] pointer-events-none z-0" />
+      <div className="absolute inset-0 bg-grid-pattern opacity-[0.05] z-0" />
+      <div className="absolute top-1/2 right-1/4 w-[60vw] h-[60vw] bg-[radial-gradient(circle,rgba(129,140,248,0.02)_0%,transparent_70%)] pointer-events-none z-0" />
 
       <div
         ref={ref}
@@ -187,17 +187,18 @@ export default function Experience() {
         {/* Timeline */}
         <div className="relative w-full">
           {/* Vertical gradient line */}
-          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-neon-cyan via-electric-purple to-neon-magenta/20 -translate-x-1/2 z-0" />
+          <div className="absolute left-4 md:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#2dd4bf] via-[#818cf8] to-slate-900/30 -translate-x-1/2 z-0" />
 
           {timeline.map((item, i) => (
             <TimelineItem key={i} index={i} {...item} />
           ))}
 
+          {/* Achievements highlighted with Sparingly used Warm Amber #f59e0b */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="mt-12 grid gap-4 lg:grid-cols-3"
+            className="mt-16 grid gap-6 md:grid-cols-3"
           >
             {[
               "Sandeep Mohapatra Memorial Medal (2015 & 2016) by Institution of Engineers (India)",
@@ -206,16 +207,16 @@ export default function Experience() {
             ].map((achievement) => (
               <Card3D
                 key={achievement}
-                className="p-6 bg-[#02070f]/80 border border-white/10 backdrop-blur-xl"
-                glowColor="rgba(139,92,246,0.14)"
+                className="p-6 backdrop-blur-xl shadow-lg"
+                glowColor="rgba(245,158,11,0.14)" // Warm Amber Glow!
               >
                 <div className="flex items-center justify-between gap-3 mb-3">
-                  <div className="h-2 w-2 rounded-full bg-neon-cyan shadow-[0_0_12px_rgba(6,182,212,0.3)]" />
-                  <span className="text-[11px] font-display font-semibold uppercase tracking-[0.22em] text-slate-500">
-                    Achievement
+                  <div className="h-2 w-2 rounded-full bg-[#f59e0b] shadow-[0_0_12px_rgba(245,158,11,0.5)]" />
+                  <span className="text-[10px] font-display font-bold uppercase tracking-[0.22em] text-[#f59e0b]">
+                    HONOR &amp; AWARD
                   </span>
                 </div>
-                <p className="text-sm md:text-base font-display font-semibold text-slate-100 leading-snug">
+                <p className="text-sm font-display font-bold text-slate-100 leading-relaxed">
                   {achievement}
                 </p>
               </Card3D>

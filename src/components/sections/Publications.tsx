@@ -1,6 +1,6 @@
-﻿"use client";
+"use client";
 
-import { useRef, useState } from "react";
+import React, { useRef, useState } from "react";
 import { motion, AnimatePresence, useInView } from "framer-motion";
 import Card3D from "../ui/Card3D";
 
@@ -26,7 +26,7 @@ const publications: PubItem[] = [
       "A widely adopted academic textbook co-authored for undergraduate Computer Science and Engineering students, covering core structures, algorithms, memory management and practical code examples.",
     source: "Academic Press, India",
     tag: "Book",
-    badgeColor: "text-pink-400 bg-pink-400/10 border-pink-400/20",
+    badgeColor: "text-amber-400 bg-amber-400/10 border-amber-400/20",
   },
   {
     id: 2,
@@ -37,7 +37,7 @@ const publications: PubItem[] = [
       "A multi-node sensor array that monitors slope stability and issues predictive alerts using adaptive data fusion and edge intelligence.",
     source: "Indian Patent Application",
     tag: "Patent",
-    badgeColor: "text-cyan-400 bg-cyan-400/10 border-cyan-400/20",
+    badgeColor: "text-teal-400 bg-teal-400/10 border-teal-400/20",
   },
   {
     id: 3,
@@ -47,7 +47,7 @@ const publications: PubItem[] = [
       "A wireless sensor network routing protocol that balances load and extends battery life for large-scale urban deployments.",
     source: "Indian Patent Application",
     tag: "Patent",
-    badgeColor: "text-cyan-400 bg-cyan-400/10 border-cyan-400/20",
+    badgeColor: "text-teal-400 bg-teal-400/10 border-teal-400/20",
   },
   {
     id: 4,
@@ -58,7 +58,7 @@ const publications: PubItem[] = [
       "A wearable medical IoT solution that performs real-time arrhythmia analysis at the edge without cloud dependency.",
     source: "Indian Patent Application",
     tag: "Patent",
-    badgeColor: "text-cyan-400 bg-cyan-400/10 border-cyan-400/20",
+    badgeColor: "text-teal-400 bg-teal-400/10 border-teal-400/20",
   },
   {
     id: 5,
@@ -69,7 +69,7 @@ const publications: PubItem[] = [
       "An edge-aware system that optimizes traffic signal timing through computer vision and adaptive volume prediction.",
     source: "Indian Patent Application",
     tag: "Patent",
-    badgeColor: "text-cyan-400 bg-cyan-400/10 border-cyan-400/20",
+    badgeColor: "text-teal-400 bg-teal-400/10 border-teal-400/20",
   },
   {
     id: 6,
@@ -79,7 +79,7 @@ const publications: PubItem[] = [
       "A published study on optimizing cluster leadership with energy balancing strategies for long-term WSN deployments.",
     source: "IEEE Transactions on Green Communications, 2023",
     tag: "Research Paper",
-    badgeColor: "text-purple-400 bg-purple-400/10 border-purple-400/20",
+    badgeColor: "text-indigo-400 bg-indigo-400/10 border-indigo-400/20",
   },
   {
     id: 7,
@@ -89,7 +89,7 @@ const publications: PubItem[] = [
       "A high-impact paper outlining a sensor-driven landslide alert system using edge analytics and adaptive communication.",
     source: "Elsevier Sensors, 2022",
     tag: "Research Paper",
-    badgeColor: "text-purple-400 bg-purple-400/10 border-purple-400/20",
+    badgeColor: "text-indigo-400 bg-indigo-400/10 border-indigo-400/20",
   },
   {
     id: 8,
@@ -99,7 +99,7 @@ const publications: PubItem[] = [
       "A journal publication presenting a trust-based edge architecture for distributed sensor systems.",
     source: "IEEE IoT Research Letters, 2023",
     tag: "Research Paper",
-    badgeColor: "text-purple-400 bg-purple-400/10 border-purple-400/20",
+    badgeColor: "text-indigo-400 bg-indigo-400/10 border-indigo-400/20",
   },
   {
     id: 9,
@@ -109,7 +109,7 @@ const publications: PubItem[] = [
       "An investigation into machine learning pipelines that deliver real-time insights from urban IoT deployments.",
     source: "International Journal of Smart Cities, 2023",
     tag: "Research Paper",
-    badgeColor: "text-purple-400 bg-purple-400/10 border-purple-400/20",
+    badgeColor: "text-indigo-400 bg-indigo-400/10 border-indigo-400/20",
   },
   {
     id: 10,
@@ -119,7 +119,7 @@ const publications: PubItem[] = [
       "A security-focused publication on layered authentication mechanisms for distributed IoT networks.",
     source: "IEEE Internet of Things Journal, 2021",
     tag: "Research Paper",
-    badgeColor: "text-purple-400 bg-purple-400/10 border-purple-400/20",
+    badgeColor: "text-indigo-400 bg-indigo-400/10 border-indigo-400/20",
   },
   {
     id: 11,
@@ -129,7 +129,7 @@ const publications: PubItem[] = [
       "A study exploring IoT sensor integration and predictive analytics for precision farming applications.",
     source: "ACM Transactions on Sensor Networks, 2020",
     tag: "Research Paper",
-    badgeColor: "text-purple-400 bg-purple-400/10 border-purple-400/20",
+    badgeColor: "text-indigo-400 bg-indigo-400/10 border-indigo-400/20",
   },
   {
     id: 12,
@@ -139,11 +139,11 @@ const publications: PubItem[] = [
       "A publication on edge intelligence architectures for remote patient monitoring and early-warning analytics.",
     source: "Journal of Ambient Intelligence, 2024",
     tag: "Research Paper",
-    badgeColor: "text-purple-400 bg-purple-400/10 border-purple-400/20",
+    badgeColor: "text-indigo-400 bg-indigo-400/10 border-indigo-400/20",
   },
 ];
 
-export default function Publications() {
+export default function Publications(): React.JSX.Element {
   const [activeCategory, setActiveCategory] = useState<Category>("all");
   const containerRef = useRef<HTMLDivElement>(null);
   const isInView = useInView(containerRef, { once: true, margin: "-100px" });
@@ -163,11 +163,13 @@ export default function Publications() {
   return (
     <section
       id="publications"
-      className="relative min-h-screen py-32 px-4 flex items-center justify-center overflow-hidden"
+      className="relative py-24 px-4 flex items-center justify-center overflow-hidden scroll-mt-20"
     >
       <div className="absolute inset-0 bg-grid-pattern opacity-10 z-0" />
-      <div className="absolute top-16 left-0 w-96 h-96 bg-[radial-gradient(circle,rgba(6,182,212,0.08)_0%,transparent_70%)] pointer-events-none mix-blend-screen" />
-      <div className="absolute bottom-24 right-0 w-80 h-80 bg-[radial-gradient(circle,rgba(139,92,246,0.08)_0%,transparent_70%)] pointer-events-none mix-blend-screen" />
+      
+      {/* Background glow blobs restricted to max 6% opacity */}
+      <div className="absolute top-16 left-0 w-96 h-96 bg-[radial-gradient(circle,rgba(45,212,191,0.05)_0%,transparent_70%)] pointer-events-none mix-blend-screen" />
+      <div className="absolute bottom-24 right-0 w-80 h-80 bg-[radial-gradient(circle,rgba(129,140,248,0.05)_0%,transparent_70%)] pointer-events-none mix-blend-screen" />
 
       <div
         ref={containerRef}
@@ -180,11 +182,11 @@ export default function Publications() {
             transition={{ duration: 0.8 }}
             className="flex items-center gap-2 mb-4"
           >
-            <span className="h-[2px] w-8 bg-neon-cyan shadow-[0_0_10px_rgba(6,182,212,0.2)]" />
-            <span className="text-[11px] font-display font-bold tracking-[0.28em] text-neon-cyan uppercase">
+            <span className="h-[2px] w-8 bg-[#2dd4bf]" />
+            <span className="text-[11px] font-display font-bold tracking-[0.28em] text-[#2dd4bf] uppercase">
               Publications
             </span>
-            <span className="h-[2px] w-8 bg-neon-cyan shadow-[0_0_10px_rgba(6,182,212,0.2)]" />
+            <span className="h-[2px] w-8 bg-[#2dd4bf]" />
           </motion.div>
 
           <motion.h2
@@ -206,44 +208,47 @@ export default function Publications() {
             industrial solutions.
           </motion.p>
 
+          {/* Stats count with new beautiful theme colors */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-10 grid grid-cols-1 sm:grid-cols-3 gap-5 w-full"
           >
-            <div className="rounded-[32px] border border-white/10 bg-space-black/80 p-6 text-center shadow-[0_25px_80px_rgba(0,0,0,0.25)]">
-              <p className="text-4xl font-display font-black text-neon-cyan">
+            <div className="rounded-[18px] border border-white/5 bg-[#0a0f1e]/80 p-6 text-center shadow-lg">
+              <p className="text-4xl font-display font-black text-[#2dd4bf]">
                 53
               </p>
-              <p className="mt-3 text-xs font-display font-semibold tracking-[0.28em] uppercase text-slate-400">
+              <p className="mt-3 text-[10px] font-display font-bold tracking-[0.2em] uppercase text-slate-400">
                 Publications
               </p>
             </div>
-            <div className="rounded-[32px] border border-white/10 bg-space-black/80 p-6 text-center shadow-[0_25px_80px_rgba(0,0,0,0.25)]">
-              <p className="text-4xl font-display font-black text-electric-purple">
+            <div className="rounded-[18px] border border-white/5 bg-[#0a0f1e]/80 p-6 text-center shadow-lg">
+              <p className="text-4xl font-display font-black text-[#818cf8]">
                 13,000+
               </p>
-              <p className="mt-3 text-xs font-display font-semibold tracking-[0.28em] uppercase text-slate-400">
+              <p className="mt-3 text-[10px] font-display font-bold tracking-[0.2em] uppercase text-slate-400">
                 Reads
               </p>
             </div>
-            <div className="rounded-[32px] border border-white/10 bg-space-black/80 p-6 text-center shadow-[0_25px_80px_rgba(0,0,0,0.25)]">
-              <p className="text-4xl font-display font-black text-neon-magenta">
+            {/* Citations highlighted with Warm Amber #f59e0b */}
+            <div className="rounded-[18px] border border-white/5 bg-[#0a0f1e]/80 p-6 text-center shadow-lg">
+              <p className="text-4xl font-display font-black text-[#f59e0b] shadow-[0_0_15px_rgba(245,158,11,0.15)]">
                 400+
               </p>
-              <p className="mt-3 text-xs font-display font-semibold tracking-[0.28em] uppercase text-slate-400">
+              <p className="mt-3 text-[10px] font-display font-bold tracking-[0.2em] uppercase text-slate-400">
                 Citations
               </p>
             </div>
           </motion.div>
 
+          {/* Buttons: Changed to rounded-lg */}
           <div className="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4 w-full">
             <a
               href="https://www.researchgate.net/profile/Chinmaya-Nayak-6"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-neon-cyan px-7 py-3 text-sm font-display font-bold uppercase tracking-[0.18em] text-space-black shadow-[0_0_30px_rgba(6,182,212,0.2)] transition duration-300 hover:-translate-y-0.5"
+              className="inline-flex items-center justify-center rounded-lg bg-gradient-to-r from-[#2dd4bf] to-[#818cf8] px-7 py-3 text-sm font-display font-bold uppercase tracking-[0.18em] text-[#0a0f1e] shadow-[0_0_30px_rgba(45,212,191,0.25)] transition duration-300 hover:-translate-y-0.5"
             >
               View All 53 Publications on ResearchGate
             </a>
@@ -251,13 +256,14 @@ export default function Publications() {
               href="https://scholar.google.com/citations?user=F_kFZrQAAAAJ&hl=en"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-white/10 bg-white/5 px-7 py-3 text-sm font-display font-semibold uppercase tracking-[0.18em] text-slate-200 transition duration-300 hover:border-neon-cyan hover:text-neon-cyan"
+              className="inline-flex items-center justify-center rounded-lg border border-[#2dd4bf]/35 bg-[#2dd4bf]/10 px-7 py-3 text-sm font-display font-semibold uppercase tracking-[0.18em] text-slate-200 transition duration-300 hover:border-[#2dd4bf] hover:text-[#2dd4bf]"
             >
               View on Google Scholar
             </a>
           </div>
         </div>
 
+        {/* Category Selector Pills */}
         <div className="flex flex-wrap justify-center gap-2 mb-12 mt-12 glassmorphism p-1.5 rounded-full border border-white/5 shadow-2xl">
           {categories.map((cat) => {
             const isActive = activeCategory === cat.id;
@@ -266,9 +272,9 @@ export default function Publications() {
                 suppressHydrationWarning={true}
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}
-                className={`px-6 py-2 text-xs font-display font-semibold tracking-wider uppercase rounded-full transition-all duration-300 focus:outline-none ${
+                className={`px-5 py-2 text-[10px] font-display font-bold tracking-wider uppercase rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
                   isActive
-                    ? "bg-gradient-to-r from-neon-cyan to-electric-purple text-space-black shadow-[0_0_12px_rgba(6,182,212,0.25)]"
+                    ? "bg-gradient-to-r from-[#2dd4bf] to-[#818cf8] text-[#0a0f1e] shadow-[0_0_12px_rgba(45,212,191,0.25)]"
                     : "text-slate-400 hover:text-slate-100 bg-transparent"
                 }`}
               >
@@ -280,7 +286,7 @@ export default function Publications() {
 
         <motion.div
           layout
-          className="w-full grid grid-cols-1 md:grid-cols-2 gap-8"
+          className="w-full grid grid-cols-1 md:grid-cols-2 gap-8 animate-presence-grid"
         >
           <AnimatePresence mode="popLayout">
             {filteredItems.map((pub) => (
@@ -294,24 +300,24 @@ export default function Publications() {
                 className="w-full"
               >
                 <Card3D
-                  className="w-full p-8 bg-space-black/80 border border-white/10 backdrop-blur-xl shadow-[0_35px_80px_rgba(0,0,0,0.2)]"
+                  className="w-full p-8 backdrop-blur-xl shadow-[0_35px_80px_rgba(0,0,0,0.2)]"
                   glowColor={
                     pub.category === "patents"
-                      ? "rgba(6, 182, 212, 0.18)"
+                      ? "rgba(45, 212, 191, 0.12)" // Teal Glow
                       : pub.category === "books"
-                        ? "rgba(217, 70, 239, 0.18)"
-                        : "rgba(139, 92, 246, 0.18)"
+                        ? "rgba(245, 158, 11, 0.14)" // Warm Amber Glow for Textbook!
+                        : "rgba(129, 140, 248, 0.12)" // Periwinkle Glow
                   }
                 >
                   <div className="flex flex-col gap-5">
                     <div className="flex flex-wrap items-center justify-between gap-4">
                       <span
-                        className={`inline-flex px-3 py-1 rounded-full text-[10px] font-display font-bold tracking-[0.22em] uppercase ${pub.badgeColor}`}
+                        className={`inline-flex px-3 py-1 rounded-full text-[10px] font-display font-bold tracking-[0.22em] uppercase border ${pub.badgeColor}`}
                       >
                         {pub.tag}
                       </span>
                       {pub.source && (
-                        <span className="text-[10px] font-display font-semibold uppercase tracking-[0.18em] text-slate-400">
+                        <span className="text-[10px] font-display font-bold uppercase tracking-[0.18em] text-[#818cf8]">
                           {pub.source}
                         </span>
                       )}
@@ -327,7 +333,7 @@ export default function Publications() {
                     </div>
 
                     {pub.extraInfo && (
-                      <div className="rounded-3xl border border-white/10 bg-white/5 p-4 text-sm font-sans text-slate-300">
+                      <div className="rounded-xl border border-white/5 bg-white/5 p-4 text-sm font-sans text-slate-300">
                         {pub.extraInfo}
                       </div>
                     )}

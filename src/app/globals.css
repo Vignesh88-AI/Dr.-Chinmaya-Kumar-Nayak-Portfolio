@@ -1,12 +1,12 @@
 @import "tailwindcss";
 
 :root {
-  --background: #02070f;
-  --foreground: #f8fafc;
-  --color-neon-cyan: #06b6d4;
-  --color-electric-purple: #8b5cf6;
-  --color-neon-magenta: #c026d3;
-  --color-space-black: #02070f;
+  --background: #0a0f1e;
+  --foreground: #e2e8f0;
+  --color-neon-cyan: #2dd4bf;
+  --color-electric-purple: #818cf8;
+  --color-neon-magenta: #f59e0b;
+  --color-space-black: #0a0f1e;
   --color-slate-600: #475569;
   --color-slate-400: #94a3b8;
   --color-slate-200: #e2e8f0;
@@ -25,8 +25,8 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #02070f;
-    --foreground: #f8fafc;
+    --background: #0a0f1e;
+    --foreground: #e2e8f0;
   }
 }
 
@@ -34,27 +34,27 @@ body {
   min-height: 100%;
   background: radial-gradient(
     circle at top,
-    #142238 0%,
-    #02070f 30%,
-    #02070f 100%
+    #0e172e 0%,
+    #0a0f1e 50%,
+    #06091a 100%
   );
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
 }
 
 /* Cinematic dark theme utilities */
 .bg-grid-pattern {
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
   background-size: 56px 56px;
 }
 
 .bg-radial-overlay {
   background: radial-gradient(
     circle at center,
-    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.04),
     transparent 45%
   );
 }
@@ -62,14 +62,15 @@ body {
 .bg-glow-radial {
   background: radial-gradient(
     circle at center,
-    rgba(56, 189, 248, 0.2),
+    rgba(129, 140, 248, 0.12),
     transparent 55%
   );
 }
 
 .glassmorphism {
-  background: rgba(10, 14, 28, 0.68);
-  backdrop-filter: blur(20px);
+  background: rgba(15, 23, 42, 0.7);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.06);
 }
 
 .photo-glow {
@@ -77,15 +78,15 @@ body {
 }
 
 .space-black {
-  color: #02070f;
+  color: #0a0f1e;
 }
 
 .bg-space-black {
-  background-color: rgba(2, 7, 15, 0.85);
+  background-color: rgba(10, 15, 30, 0.75);
 }
 
 .text-space-black {
-  color: #02070f;
+  color: #0a0f1e;
 }
 
 .reveal-text-char {
@@ -104,7 +105,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 1rem;
-  color: rgba(148, 163, 184, 0.9);
+  color: rgba(148, 163, 184, 0.85);
   font-family: var(--font-sans);
   font-size: 0.78rem;
   letter-spacing: 0.28em;
@@ -115,14 +116,14 @@ body {
   display: inline-block;
   width: 3.25rem;
   height: 1px;
-  background: rgba(56, 189, 248, 0.4);
+  background: rgba(45, 212, 191, 0.35);
 }
 
 .section-title {
   font-size: clamp(2.75rem, 4vw, 4.8rem);
   line-height: 1.02;
   letter-spacing: -0.04em;
-  color: #f8fafc;
+  color: #e2e8f0;
   font-family: var(--font-sans);
   font-weight: 900;
   margin: 0 auto;

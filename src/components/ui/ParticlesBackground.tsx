@@ -1,11 +1,11 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import React, { useRef, useMemo } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
 
-function ParticleCloud() {
+function ParticleCloud(): React.JSX.Element {
   const pointsRef = useRef<THREE.Points>(null);
   const { viewport } = useThree();
 
@@ -62,7 +62,7 @@ function ParticleCloud() {
       >
         <PointMaterial
           transparent
-          color="#7dd3fc"
+          color="#2dd4bf" // Updated to Teal Accent
           size={0.055}
           sizeAttenuation={true}
           depthWrite={false}
@@ -71,13 +71,13 @@ function ParticleCloud() {
         />
       </Points>
       <WhiteStars />
-      {/* Secondary purple particles for color depth */}
-      <PointsCloudPurple />
+      {/* Secondary periwinkle particles for color depth */}
+      <PointsCloudPeriwinkle />
     </group>
   );
 }
 
-function WhiteStars() {
+function WhiteStars(): React.JSX.Element {
   const pointsRef = useRef<THREE.Points>(null);
   const { viewport } = useThree();
 
@@ -140,7 +140,7 @@ function WhiteStars() {
   );
 }
 
-function PointsCloudPurple() {
+function PointsCloudPeriwinkle(): React.JSX.Element {
   const pointsRef = useRef<THREE.Points>(null);
   const { viewport } = useThree();
 
@@ -176,7 +176,7 @@ function PointsCloudPurple() {
     );
 
     const scrollY = typeof window !== "undefined" ? window.scrollY : 0;
-    // Purple particles zoom in faster to create parallax depth separation
+    // Particles zoom in faster to create parallax depth separation
     pointsRef.current.position.z = THREE.MathUtils.lerp(
       pointsRef.current.position.z,
       scrollY * 0.008,
@@ -193,7 +193,7 @@ function PointsCloudPurple() {
     >
       <PointMaterial
         transparent
-        color="#c084fc"
+        color="#818cf8" // Updated to Periwinkle Accent
         size={0.07}
         sizeAttenuation={true}
         depthWrite={false}
@@ -204,16 +204,19 @@ function PointsCloudPurple() {
   );
 }
 
-export default function ParticlesBackground() {
+export default function ParticlesBackground(): React.JSX.Element {
   return (
-    <div className="fixed inset-0 w-full h-full pointer-events-none z-0 bg-[#030307]">
+    <div className="fixed inset-0 w-full h-full pointer-events-none z-0 bg-gradient-to-b from-[#0a0f1e] via-[#080d1a] to-[#06091a]">
       <div className="absolute inset-0 bg-radial-overlay z-[1]" />
-      <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] bg-glow-radial rounded-full opacity-55 filter blur-[140px] pointer-events-none z-0" />
-      <div className="absolute bottom-1/4 right-1/4 w-[50vw] h-[50vw] bg-[radial-gradient(circle_at_center,rgba(6,182,212,0.14)_0%,transparent_70%)] rounded-full opacity-50 filter blur-[160px] pointer-events-none z-0" />
+      
+      {/* Glow blobs capped at max 6% opacity to ensure subtle, premium lighting */}
+      <div className="absolute top-1/4 left-1/4 w-[40vw] h-[40vw] bg-[radial-gradient(circle_at_center,rgba(129,140,248,0.06)_0%,transparent_70%)] rounded-full filter blur-[140px] pointer-events-none z-0" />
+      <div className="absolute bottom-1/4 right-1/4 w-[50vw] h-[50vw] bg-[radial-gradient(circle_at_center,rgba(45,212,191,0.06)_0%,transparent_70%)] rounded-full filter blur-[160px] pointer-events-none z-0" />
 
       <Canvas
         camera={{ position: [0, 0, 5], fov: 60 }}
         gl={{ alpha: true, antialias: true }}
+        dpr={[1, 1.5]} // Cap device pixel ratio for performance
         className="w-full h-full"
       >
         <ambientLight intensity={0.95} />

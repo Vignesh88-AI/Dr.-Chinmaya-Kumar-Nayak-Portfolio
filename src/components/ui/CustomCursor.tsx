@@ -1,9 +1,9 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-export default function CustomCursor() {
+export default function CustomCursor(): React.JSX.Element | null {
   const [cursorType, setCursorType] = useState<
     "default" | "hover" | "drag" | "view"
   >("default");
@@ -77,29 +77,29 @@ export default function CustomCursor() {
     default: {
       width: 20,
       height: 20,
-      backgroundColor: "rgba(255, 255, 255, 0.15)",
-      border: "1px solid rgba(255, 255, 255, 0.4)",
+      backgroundColor: "rgba(255, 255, 255, 0.12)",
+      border: "1px solid rgba(255, 255, 255, 0.3)",
     },
     hover: {
       width: 50,
       height: 50,
-      backgroundColor: "rgba(6, 182, 212, 0.1)",
-      border: "2px solid rgba(6, 182, 212, 0.8)",
-      boxShadow: "0 0 15px rgba(6, 182, 212, 0.4)",
+      backgroundColor: "rgba(45, 212, 191, 0.08)",
+      border: "2px solid rgba(45, 212, 191, 0.75)",
+      boxShadow: "0 0 15px rgba(45, 212, 191, 0.35)",
     },
     drag: {
       width: 70,
       height: 70,
-      backgroundColor: "rgba(139, 92, 246, 0.15)",
-      border: "2px solid rgba(139, 92, 246, 0.8)",
-      boxShadow: "0 0 20px rgba(139, 92, 246, 0.5)",
+      backgroundColor: "rgba(129, 140, 248, 0.12)",
+      border: "2px solid rgba(129, 140, 248, 0.75)",
+      boxShadow: "0 0 20px rgba(129, 140, 248, 0.4)",
     },
     view: {
       width: 70,
       height: 70,
-      backgroundColor: "rgba(217, 70, 239, 0.15)",
-      border: "2px solid rgba(217, 70, 239, 0.8)",
-      boxShadow: "0 0 20px rgba(217, 70, 239, 0.5)",
+      backgroundColor: "rgba(245, 158, 11, 0.12)",
+      border: "2px solid rgba(245, 158, 11, 0.75)",
+      boxShadow: "0 0 20px rgba(245, 158, 11, 0.4)",
     },
   };
 
@@ -129,7 +129,7 @@ export default function CustomCursor() {
 
       {/* Inner Dot */}
       <motion.div
-        className="fixed top-0 left-0 w-2 h-2 bg-neon-cyan rounded-full pointer-events-none z-50 -translate-x-1/2 -translate-y-1/2 shadow-[0_0_8px_#06b6d4]"
+        className="fixed top-0 left-0 w-2 h-2 bg-[#2dd4bf] rounded-full pointer-events-none z-50 -translate-x-1/2 -translate-y-1/2 shadow-[0_0_8px_#2dd4bf]"
         style={{
           x: cursorX,
           y: cursorY,

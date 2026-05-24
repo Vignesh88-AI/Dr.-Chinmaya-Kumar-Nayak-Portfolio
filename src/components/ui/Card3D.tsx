@@ -6,10 +6,14 @@ import { motion, useMotionValue, useSpring, useTransform } from "framer-motion";
 interface Card3DProps {
   children: React.ReactNode;
   className?: string;
-  glowColor?: string; // e.g., "rgba(6, 182, 212, 0.15)"
+  glowColor?: string; // e.g., "rgba(45, 212, 191, 0.15)"
 }
 
-export default function Card3D({ children, className = "", glowColor = "rgba(139, 92, 246, 0.15)" }: Card3DProps) {
+export default function Card3D({
+  children,
+  className = "",
+  glowColor = "rgba(45, 212, 191, 0.12)",
+}: Card3DProps): React.JSX.Element {
   const cardRef = useRef<HTMLDivElement>(null);
   const [hovered, setHovered] = useState(false);
 
@@ -22,7 +26,7 @@ export default function Card3D({ children, className = "", glowColor = "rgba(139
   const rotateX = useSpring(rotateXVal, springConfig);
   const rotateY = useSpring(rotateYVal, springConfig);
 
-  // Map coordinates to degrees of rotation (up to 15 degrees)
+  // Map coordinates to degrees of rotation (up to 10 degrees)
   const rotationX = useTransform(rotateX, [-0.5, 0.5], [10, -10]);
   const rotationY = useTransform(rotateY, [-0.5, 0.5], [-10, 10]);
 
@@ -74,8 +78,10 @@ export default function Card3D({ children, className = "", glowColor = "rgba(139
         rotateY: rotationY,
         transformStyle: "preserve-3d",
       }}
-      className={`relative rounded-2xl glassmorphism transition-all duration-300 ${
-        hovered ? "border-purple-500/20 shadow-[0_0_25px_rgba(139,92,246,0.1)]" : "border-slate-800/40"
+      className={`relative rounded-2xl border transition-all duration-300 ${
+        hovered
+          ? "border-[#2dd4bf]/35 bg-slate-800/60 -translate-y-1 shadow-[0_8px_30px_rgba(45,212,191,0.15)]"
+          : "border-slate-800/60 bg-slate-800/50"
       } ${className}`}
     >
       {/* Light sweep / radial glow background */}
@@ -85,13 +91,17 @@ export default function Card3D({ children, className = "", glowColor = "rgba(139
           opacity: hovered ? 1 : 0,
           background: useTransform(
             [glowX, glowY],
-            ([x, y]) => `radial-gradient(circle 180px at ${x}px ${y}px, ${glowColor}, transparent 80%)`
+            ([x, y]) =>
+              `radial-gradient(circle 180px at ${x}px ${y}px, ${glowColor}, transparent 80%)`,
           ),
         }}
       />
 
       {/* Internal wrapper for content to apply transform depth (3D Pop-out) */}
-      <div style={{ transform: "translateZ(30px)" }} className="relative w-full h-full">
+      <div
+        style={{ transform: "translateZ(30px)" }}
+        className="relative w-full h-full"
+      >
         {children}
       </div>
     </motion.div>

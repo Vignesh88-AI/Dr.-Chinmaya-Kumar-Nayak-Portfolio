@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import Card3D from "../ui/Card3D";
 
@@ -16,7 +16,7 @@ function Counter({
   suffix = "",
   prefix = "",
   duration = 2,
-}: CounterProps) {
+}: CounterProps): React.JSX.Element {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true, margin: "-80px" });
@@ -56,46 +56,46 @@ const stats = [
     suffix: "+",
     label: "Years in Academia",
     sub: "Teaching, Research & Academic Leadership",
-    color: "rgba(6, 182, 212, 0.12)",
-    accent: "#06b6d4",
+    color: "rgba(45, 212, 191, 0.12)",
+    accent: "#2dd4bf",
   },
   {
     value: 4,
     suffix: "",
     label: "Indian Patents",
     sub: "Filed & Granted – IoT, AI, WSN & Smart Systems",
-    color: "rgba(139, 92, 246, 0.12)",
-    accent: "#8b5cf6",
+    color: "rgba(129, 140, 248, 0.12)",
+    accent: "#818cf8",
   },
   {
     value: 1,
     suffix: "",
     label: "Book Authored",
     sub: '"Data Structures Using C" – Used across universities',
-    color: "rgba(217, 70, 239, 0.12)",
-    accent: "#d946ef",
+    color: "rgba(245, 158, 11, 0.12)",
+    accent: "#f59e0b", // Sparingly used Warm Amber for textbook highlight
   },
   {
     value: 1000,
     suffix: "+",
     label: "Students Mentored",
     sub: "UG, PG & Doctoral researchers guided",
-    color: "rgba(6, 182, 212, 0.12)",
-    accent: "#06b6d4",
+    color: "rgba(45, 212, 191, 0.12)",
+    accent: "#2dd4bf",
   },
 ];
 
-export default function About() {
+export default function About(): React.JSX.Element {
   const textRef = useRef<HTMLDivElement>(null);
   const inView = useInView(textRef, { once: true, margin: "-80px" });
 
   return (
     <section
       id="about"
-      className="relative py-32 px-6 flex items-center justify-center overflow-hidden"
+      className="relative py-24 px-6 flex items-center justify-center overflow-hidden scroll-mt-20"
     >
       {/* Background accent */}
-      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[60vw] bg-[radial-gradient(ellipse_at_center,rgba(139,92,246,0.04)_0%,transparent_65%)] pointer-events-none z-0" />
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80vw] h-[60vw] bg-[radial-gradient(ellipse_at_center,rgba(129,140,248,0.04)_0%,transparent_65%)] pointer-events-none z-0" />
 
       <div className="w-full max-w-6xl grid grid-cols-1 lg:grid-cols-12 gap-16 items-center z-[2]">
         {/* ── Left: Bio ── */}
@@ -106,8 +106,8 @@ export default function About() {
             transition={{ duration: 0.8 }}
             className="flex items-center gap-2 mb-4"
           >
-            <span className="h-px w-8 bg-electric-purple" />
-            <span className="text-[11px] font-display font-bold tracking-[0.22em] text-electric-purple uppercase">
+            <span className="h-px w-8 bg-[#818cf8]" />
+            <span className="text-[11px] font-display font-bold tracking-[0.22em] text-[#818cf8] uppercase">
               Biography
             </span>
           </motion.div>
@@ -134,7 +134,7 @@ export default function About() {
                 Head of the School of AI &amp; Data Science
               </span>{" "}
               at Sri Sri University, Odisha. Holding a{" "}
-              <span className="text-neon-cyan font-medium">
+              <span className="text-[#2dd4bf] font-medium">
                 Ph.D. in Computer Science &amp; Engineering
               </span>{" "}
               from VSSUT Burla, he brings over 17 years of deep expertise in
@@ -152,11 +152,11 @@ export default function About() {
               , Machine Learning, IoT, and Big Data Analytics — disciplines at
               the core of tomorrow's intelligent infrastructure. He has authored
               the widely-used textbook{" "}
-              <span className="text-electric-purple font-semibold italic">
+              <span className="text-[#818cf8] font-semibold italic">
                 "Data Structures Using C"
               </span>{" "}
               and holds{" "}
-              <span className="text-neon-cyan font-semibold">
+              <span className="text-[#2dd4bf] font-semibold">
                 4 Indian Patents
               </span>{" "}
               across smart systems, healthcare IoT, and edge AI.
@@ -189,7 +189,7 @@ export default function About() {
             ].map((tag) => (
               <span
                 key={tag}
-                className="px-3 py-1 text-[10px] font-display font-semibold tracking-wider text-neon-cyan/80 border border-neon-cyan/15 rounded-full bg-neon-cyan/5"
+                className="px-3 py-1 text-[10px] font-display font-semibold tracking-wider text-[#2dd4bf]/80 border border-[#2dd4bf]/15 rounded-full bg-[#2dd4bf]/5"
               >
                 {tag}
               </span>
@@ -197,7 +197,7 @@ export default function About() {
           </motion.div>
         </div>
 
-        {/* ── Right: Stat Cards ── */}
+        {/* ── Right: Stat Cards (now use bg-slate-800/50 borders and hover translateY) ── */}
         <div className="lg:col-span-6 grid grid-cols-1 sm:grid-cols-2 gap-5">
           {stats.map((stat, i) => (
             <motion.div
@@ -231,7 +231,7 @@ export default function About() {
                   <p className="text-sm font-display font-bold text-slate-200 mb-1">
                     {stat.label}
                   </p>
-                  <p className="text-[11px] font-sans text-slate-500 leading-snug">
+                  <p className="text-[11px] font-sans text-slate-400 leading-snug">
                     {stat.sub}
                   </p>
                 </div>

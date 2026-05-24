@@ -1,9 +1,9 @@
 "use client";
 
-import { useRef, useMemo } from "react";
+import React, { useRef, useMemo, useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { PointMaterial, Points } from "@react-three/drei";
-import { motion, useInView } from "framer-motion";
+import { motion, AnimatePresence, useInView } from "framer-motion";
 import * as THREE from "three";
 import Card3D from "../ui/Card3D";
 
@@ -15,7 +15,7 @@ function createSeededRandom(seed: number) {
   };
 }
 
-function WsnMesh() {
+function WsnMesh(): React.JSX.Element {
   const ref = useRef<THREE.Points>(null);
   const count = 280;
   const positions = useMemo(() => {
@@ -42,8 +42,8 @@ function WsnMesh() {
     <Points ref={ref} positions={positions} stride={3}>
       <PointMaterial
         transparent
-        color="#06b6d4"
-        size={0.07}
+        color="#2dd4bf" // Updated to Soft Teal
+        size={0.075}
         sizeAttenuation
         depthWrite={false}
         blending={THREE.AdditiveBlending}
@@ -52,7 +52,7 @@ function WsnMesh() {
   );
 }
 
-function AiMesh() {
+function AiMesh(): React.JSX.Element {
   const ref = useRef<THREE.Mesh>(null);
   useFrame((s) => {
     if (!ref.current) return;
@@ -63,12 +63,12 @@ function AiMesh() {
   return (
     <mesh ref={ref}>
       <octahedronGeometry args={[1, 3]} />
-      <meshBasicMaterial color="#8b5cf6" wireframe transparent opacity={0.7} />
+      <meshBasicMaterial color="#818cf8" wireframe transparent opacity={0.6} />
     </mesh>
   );
 }
 
-function IotMesh() {
+function IotMesh(): React.JSX.Element {
   const r1 = useRef<THREE.Mesh>(null);
   const r2 = useRef<THREE.Mesh>(null);
   const r3 = useRef<THREE.Mesh>(null);
@@ -92,35 +92,35 @@ function IotMesh() {
       <mesh ref={r1}>
         <torusGeometry args={[1, 0.05, 12, 48]} />
         <meshBasicMaterial
-          color="#d946ef"
-          wireframe
-          transparent
-          opacity={0.7}
-        />
-      </mesh>
-      <mesh ref={r2}>
-        <torusGeometry args={[0.65, 0.04, 12, 36]} />
-        <meshBasicMaterial
-          color="#06b6d4"
+          color="#818cf8" // Updated to Periwinkle
           wireframe
           transparent
           opacity={0.65}
         />
       </mesh>
-      <mesh ref={r3}>
-        <torusGeometry args={[0.35, 0.03, 12, 24]} />
+      <mesh ref={r2}>
+        <torusGeometry args={[0.65, 0.04, 12, 36]} />
         <meshBasicMaterial
-          color="#8b5cf6"
+          color="#2dd4bf" // Updated to Soft Teal
           wireframe
           transparent
           opacity={0.6}
+        />
+      </mesh>
+      <mesh ref={r3}>
+        <torusGeometry args={[0.35, 0.03, 12, 24]} />
+        <meshBasicMaterial
+          color="#818cf8" // Updated to Periwinkle
+          wireframe
+          transparent
+          opacity={0.55}
         />
       </mesh>
     </group>
   );
 }
 
-function DataMesh() {
+function DataMesh(): React.JSX.Element {
   const ref = useRef<THREE.Group>(null);
   useFrame((s) => {
     if (!ref.current) return;
@@ -135,10 +135,10 @@ function DataMesh() {
             <mesh key={`${i}-${j}-${k}`} position={[x, y, z]}>
               <boxGeometry args={[0.16, 0.16, 0.16]} />
               <meshBasicMaterial
-                color={i + j + k === 0 ? "#06b6d4" : "#8b5cf6"}
+                color={i + j + k === 0 ? "#2dd4bf" : "#818cf8"} // Updated colors
                 wireframe
                 transparent
-                opacity={0.5}
+                opacity={0.45}
               />
             </mesh>
           )),
@@ -148,66 +148,98 @@ function DataMesh() {
   );
 }
 
-const areas = [
+interface ResearchArea {
+  id: number;
+  category: "ai-ds" | "wsn-iot";
+  title: string;
+  tagline: string;
+  desc: string;
+  glow: string;
+  mesh: React.ReactNode;
+}
+
+const areas: ResearchArea[] = [
   {
+    id: 1,
+    category: "wsn-iot",
     title: "Wireless Sensor Networks",
     tagline: "WSN · Cluster Routing · Localization",
     desc: "Energy-efficient routing protocols, node localization algorithms, and adaptive cluster-head selection in large-scale heterogeneous sensor deployments for smart monitoring and disaster-response systems.",
-    glow: "rgba(6,182,212,0.1)",
+    glow: "rgba(45,212,191,0.12)",
     mesh: <WsnMesh />,
   },
   {
+    id: 2,
+    category: "ai-ds",
     title: "Artificial Intelligence & ML",
     tagline: "Deep Learning · Edge AI · Prediction Models",
     desc: "Developing lightweight neural architectures for resource-constrained edge devices, applied in healthcare diagnostics, smart agriculture, and predictive maintenance.",
-    glow: "rgba(139,92,246,0.1)",
+    glow: "rgba(129,140,248,0.12)",
     mesh: <AiMesh />,
   },
   {
+    id: 3,
+    category: "wsn-iot",
     title: "Internet of Things (IoT)",
     tagline: "Smart Devices · Security · Cyber-Physical Systems",
     desc: "Architecting zero-trust security frameworks for cognitive smart gateways, enabling secure device-to-cloud communication and intelligent handshake protocols at the network edge.",
-    glow: "rgba(217,70,239,0.1)",
+    glow: "rgba(129,140,248,0.12)",
     mesh: <IotMesh />,
   },
   {
+    id: 4,
+    category: "ai-ds",
     title: "Data Science & Big Data",
     tagline: "Analytics · Stream Processing · Clustering",
     desc: "Distributed processing frameworks for multi-sensor streaming arrays, heuristic spatial clustering for pattern extraction in high-velocity real-world datasets.",
-    glow: "rgba(6,182,212,0.1)",
+    glow: "rgba(45,212,191,0.12)",
     mesh: <DataMesh />,
   },
 ];
 
-export default function Research() {
+type FilterCategory = "all" | "ai-ds" | "wsn-iot";
+
+export default function Research(): React.JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
+  const [activeTab, setActiveTab] = useState<FilterCategory>("all");
+
+  const tabs: { id: FilterCategory; label: string }[] = [
+    { id: "all", label: "All Expertise" },
+    { id: "ai-ds", label: "AI & Data Science" },
+    { id: "wsn-iot", label: "WSN & IoT" },
+  ];
+
+  const filteredAreas = useMemo(() => {
+    if (activeTab === "all") return areas;
+    return areas.filter((area) => area.category === activeTab);
+  }, [activeTab]);
 
   return (
     <section
       id="research"
-      className="relative py-32 px-6 flex items-center justify-center overflow-hidden"
+      className="relative py-28 px-6 flex items-center justify-center overflow-hidden scroll-mt-20"
     >
-      <div className="absolute top-1/3 left-1/4 w-[50vw] h-[50vw] bg-[radial-gradient(circle,rgba(6,182,212,0.02)_0%,transparent_70%)] pointer-events-none z-0" />
-      <div className="absolute bottom-1/3 right-1/4 w-[50vw] h-[50vw] bg-[radial-gradient(circle,rgba(217,70,239,0.02)_0%,transparent_70%)] pointer-events-none z-0" />
+      <div className="absolute top-1/3 left-1/4 w-[50vw] h-[50vw] bg-[radial-gradient(circle,rgba(45,212,191,0.015)_0%,transparent_70%)] pointer-events-none z-0" />
+      <div className="absolute bottom-1/3 right-1/4 w-[50vw] h-[50vw] bg-[radial-gradient(circle,rgba(129,140,248,0.015)_0%,transparent_70%)] pointer-events-none z-0" />
 
       <div
         ref={ref}
         className="w-full max-w-6xl z-[2] flex flex-col items-center"
       >
         {/* Title */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
             className="flex items-center justify-center gap-3 mb-4"
           >
-            <span className="h-px w-8 bg-neon-cyan" />
-            <span className="text-[11px] font-display font-bold tracking-[0.22em] text-neon-cyan uppercase">
+            <span className="h-px w-8 bg-[#2dd4bf]" />
+            <span className="text-[11px] font-display font-bold tracking-[0.22em] text-[#2dd4bf] uppercase">
               Core Expertise
             </span>
-            <span className="h-px w-8 bg-neon-cyan" />
+            <span className="h-px w-8 bg-[#2dd4bf]" />
           </motion.div>
           <motion.h2
             initial={{ opacity: 0, y: 24 }}
@@ -228,60 +260,88 @@ export default function Research() {
           </motion.p>
         </div>
 
-        {/* Cards */}
-        <div className="w-full grid grid-cols-1 md:grid-cols-2 gap-7">
-          {areas.map((area, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 36 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{
-                duration: 1,
-                delay: i * 0.12,
-                ease: [0.16, 1, 0.3, 1],
-              }}
-              className="h-[340px] w-full"
-            >
-              <Card3D
-                className="w-full h-full p-7 flex flex-col justify-between"
-                glowColor={area.glow}
+        {/* Dynamic Filter Tabs */}
+        <div className="flex justify-center gap-1.5 mb-14 glassmorphism p-1 rounded-full border border-white/5 shadow-2xl">
+          {tabs.map((tab) => {
+            const isActive = activeTab === tab.id;
+            return (
+              <button
+                suppressHydrationWarning={true}
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id)}
+                className={`px-5 py-2 text-[10px] font-display font-bold tracking-wider uppercase rounded-full transition-all duration-300 focus:outline-none cursor-pointer ${
+                  isActive
+                    ? "bg-gradient-to-r from-[#2dd4bf] to-[#818cf8] text-[#0a0f1e] shadow-[0_0_12px_rgba(45,212,191,0.25)]"
+                    : "text-slate-400 hover:text-slate-100 bg-transparent"
+                }`}
               >
-                <div className="grid grid-cols-12 gap-4 h-full items-center">
-                  {/* Left */}
-                  <div className="col-span-7 flex flex-col justify-center gap-3 h-full py-2">
-                    <span className="text-[9px] font-display font-bold tracking-[0.22em] text-slate-500 uppercase">
-                      0{i + 1} / Research
-                    </span>
-                    <div>
-                      <h3 className="text-[1.05rem] font-display font-bold text-white leading-snug mb-1">
-                        {area.title}
-                      </h3>
-                      <p className="text-[10px] font-display font-semibold text-neon-cyan/70 tracking-wider mb-3">
-                        {area.tagline}
-                      </p>
-                      <p className="text-[12.5px] font-sans text-slate-400 leading-relaxed">
-                        {area.desc}
-                      </p>
-                    </div>
-                  </div>
-
-                  {/* Right: Canvas */}
-                  <div className="col-span-5 w-full h-[180px] relative">
-                    <div className="w-full h-full">
-                      <Canvas
-                        camera={{ position: [0, 0, 2.5] }}
-                        gl={{ alpha: true }}
-                      >
-                        <ambientLight intensity={1.5} />
-                        {area.mesh}
-                      </Canvas>
-                    </div>
-                  </div>
-                </div>
-              </Card3D>
-            </motion.div>
-          ))}
+                {tab.label}
+              </button>
+            );
+          })}
         </div>
+
+        {/* Filtered Cards List (uses flex elements that wrap on mobile to avoid layout cramps) */}
+        <motion.div
+          layout
+          className="w-full grid grid-cols-1 md:grid-cols-2 gap-8"
+        >
+          <AnimatePresence mode="popLayout">
+            {filteredAreas.map((area, i) => (
+              <motion.div
+                layout
+                key={area.id}
+                initial={{ opacity: 0, y: 24, scale: 0.98 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: 24, scale: 0.98 }}
+                transition={{
+                  duration: 0.65,
+                  ease: [0.16, 1, 0.3, 1],
+                }}
+                className="w-full"
+              >
+                <Card3D
+                  className="w-full min-h-[380px] p-6 lg:p-8 flex flex-col justify-between"
+                  glowColor={area.glow}
+                >
+                  <div className="flex flex-col lg:flex-row gap-6 h-full items-center w-full">
+                    {/* Left: Text Content with expanded breathing room */}
+                    <div className="w-full lg:w-7/12 flex flex-col justify-center gap-3">
+                      <span className="text-[9px] font-display font-bold tracking-[0.22em] text-[#818cf8] uppercase">
+                        0{area.id} / Research
+                      </span>
+                      <div>
+                        <h3 className="text-xl font-display font-black text-white leading-tight mb-2 tracking-tight">
+                          {area.title}
+                        </h3>
+                        <p className="text-[10px] font-display font-semibold text-[#2dd4bf] tracking-wider mb-4 uppercase">
+                          {area.tagline}
+                        </p>
+                        <p className="text-[13px] font-sans text-slate-300 leading-relaxed">
+                          {area.desc}
+                        </p>
+                      </div>
+                    </div>
+
+                    {/* Right: Three.js visualizer */}
+                    <div className="w-full lg:w-5/12 h-[180px] lg:h-[220px] relative flex-shrink-0">
+                      <div className="w-full h-full">
+                        <Canvas
+                          camera={{ position: [0, 0, 2.3] }}
+                          gl={{ alpha: true }}
+                          dpr={[1, 1.5]}
+                        >
+                          <ambientLight intensity={1.5} />
+                          {area.mesh}
+                        </Canvas>
+                      </div>
+                    </div>
+                  </div>
+                </Card3D>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
       </div>
     </section>
   );
