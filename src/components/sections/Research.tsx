@@ -218,7 +218,7 @@ export default function Research(): React.JSX.Element {
   return (
     <section
       id="research"
-      className="relative py-28 px-6 flex items-center justify-center overflow-hidden scroll-mt-20"
+      className="relative py-24 px-6 flex items-center justify-center overflow-hidden scroll-mt-20"
     >
       <div className="absolute top-1/3 left-1/4 w-[50vw] h-[50vw] bg-[radial-gradient(circle,rgba(45,212,191,0.015)_0%,transparent_70%)] pointer-events-none z-0" />
       <div className="absolute bottom-1/3 right-1/4 w-[50vw] h-[50vw] bg-[radial-gradient(circle,rgba(129,140,248,0.015)_0%,transparent_70%)] pointer-events-none z-0" />
@@ -261,7 +261,7 @@ export default function Research(): React.JSX.Element {
         </div>
 
         {/* Dynamic Filter Tabs */}
-        <div className="flex justify-center gap-1.5 mb-14 glassmorphism p-1 rounded-full border border-white/5 shadow-2xl">
+        <div className="flex justify-center gap-1.5 mb-8 glassmorphism p-1 rounded-full border border-white/5 shadow-2xl">
           {tabs.map((tab) => {
             const isActive = activeTab === tab.id;
             return (

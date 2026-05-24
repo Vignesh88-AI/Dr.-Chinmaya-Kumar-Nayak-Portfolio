@@ -10,13 +10,11 @@ import Publications from "./sections/Publications";
 import Contact from "./sections/Contact";
 import SmoothScroll from "./ui/SmoothScroll";
 import ParticlesBackground from "./ui/ParticlesBackground";
-import CustomCursor from "./ui/CustomCursor";
+
 
 export default function ClientShell(): React.JSX.Element {
   return (
     <SmoothScroll>
-      {/* Custom animated cursor follower */}
-      <CustomCursor />
 
       {/* 3D Cosmic background */}
       <ParticlesBackground />

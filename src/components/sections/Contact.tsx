@@ -111,7 +111,7 @@ export default function Contact(): React.JSX.Element {
         className="w-full max-w-6xl z-[2] flex flex-col items-center"
       >
         {/* Title */}
-        <div className="w-full text-center mb-16 flex flex-col items-center">
+        <div className="w-full text-center mb-10 flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -148,7 +148,7 @@ export default function Contact(): React.JSX.Element {
         {/* Spacious, premium responsive 2-column layout (info left, form right) */}
         <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* ── Left: Contact info + Social links (5/12 width) ── */}
-          <div className="lg:col-span-5 flex flex-col gap-5">
+          <div className="lg:col-span-5 flex flex-col gap-3">
             {/* Office details */}
             <motion.div
               initial={{ opacity: 0, x: -24 }}

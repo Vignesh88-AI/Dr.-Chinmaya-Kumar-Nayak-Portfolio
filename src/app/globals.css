@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+/* ─── Cursor reset: always use browser native cursor ─── */
+* { cursor: default !important; }
+a, button, [role="button"] { cursor: pointer !important; }
+
 :root {
   --background: #0a0f1e;
   --foreground: #e2e8f0;

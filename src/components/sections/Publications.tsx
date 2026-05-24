@@ -175,7 +175,7 @@ export default function Publications(): React.JSX.Element {
         ref={containerRef}
         className="w-full max-w-6xl z-[2] flex flex-col items-center"
       >
-        <div className="w-full text-center mb-16 flex flex-col items-center">
+        <div className="w-full text-center mb-10 flex flex-col items-center">
           <motion.div
             initial={{ opacity: 0, y: 28 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}

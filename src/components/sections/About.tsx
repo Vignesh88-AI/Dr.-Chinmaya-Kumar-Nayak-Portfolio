@@ -142,18 +142,29 @@ export default function About(): React.JSX.Element {
             </p>
             <p>
               His research spans{" "}
-              <span className="text-slate-100 font-medium">
+              <span className="text-teal-300 font-semibold bg-teal-400/10 px-1.5 py-0.5 rounded">
                 Wireless Sensor Networks
               </span>
               ,{" "}
-              <span className="text-slate-100 font-medium">
+              <span className="text-indigo-300 font-semibold bg-indigo-400/10 px-1.5 py-0.5 rounded">
                 Artificial Intelligence
               </span>
-              , Machine Learning, IoT, and Big Data Analytics — disciplines at
-              the core of tomorrow's intelligent infrastructure. He has authored
-              the widely-used textbook{" "}
+              ,{" "}
+              <span className="text-indigo-300 font-semibold bg-indigo-400/10 px-1.5 py-0.5 rounded">
+                Machine Learning
+              </span>
+              ,{" "}
+              <span className="text-teal-300 font-semibold bg-teal-400/10 px-1.5 py-0.5 rounded">
+                IoT
+              </span>
+              , and{" "}
+              <span className="text-amber-300 font-semibold bg-amber-400/10 px-1.5 py-0.5 rounded">
+                Big Data Analytics
+              </span>{" "}
+              — disciplines at the core of tomorrow&apos;s intelligent
+              infrastructure. He has authored the widely-used textbook{" "}
               <span className="text-[#818cf8] font-semibold italic">
-                "Data Structures Using C"
+                &ldquo;Data Structures Using C&rdquo;
               </span>{" "}
               and holds{" "}
               <span className="text-[#2dd4bf] font-semibold">

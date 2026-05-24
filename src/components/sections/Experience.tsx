@@ -30,7 +30,7 @@ function TimelineItem({
   return (
     <div
       ref={ref}
-      className={`relative flex flex-col md:flex-row items-start md:items-center w-full mb-14 last:mb-0 ${isRight ? "md:flex-row-reverse" : ""}`}
+      className={`relative flex flex-col md:flex-row items-start md:items-center w-full mb-8 last:mb-0 ${isRight ? "md:flex-row-reverse" : ""}`}
     >
       {/* Center dot + connector */}
       <div className="absolute left-4 md:left-1/2 top-5 md:top-auto -translate-x-1/2 flex items-center justify-center z-10">
@@ -154,7 +154,7 @@ export default function Experience(): React.JSX.Element {
         className="w-full max-w-4xl z-[2] flex flex-col items-center"
       >
         {/* Title */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-12">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
